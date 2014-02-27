@@ -12,19 +12,25 @@
 * **addedGasMass_**: Cumulative mass generation of the gas phase *kg*
 * **totalGasMassFlux_**: Total mass gas flux at the pyrolysing walls *kg/s*
 * **totalHeatRR_**: Total heat release rate *J/s*
+*/
 
-*namespace Foam
+'
+namespace Foam
 {
 namespace regionModels
 {
 namespace pyrolysisModels
 {
-*
+'
 
-####What happens:
-* read mesh region where pyrolysis occurs
-* static
+// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
+//######################################################################################################
+/*
+- read mesh region where pyrolysis occurs
+- static
+*/
+//######################################################################################################
 
 defineTypeNameAndDebug(reactingOneDim, 0);
 

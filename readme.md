@@ -63,17 +63,7 @@ void reactingOneDim::readReactingOneDimControls()
 - check if true
 */
 //######################################################################################################
-bool reactingOneDim::read()
-{
-    if (pyrolysisModel::read())
-    {
-        readReactingOneDimControls();
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+
 }
 
 

@@ -52,7 +52,7 @@ void reactingOneDim::readReactingOneDimControls()
 {
     const dictionary& solution = this->solution().subDict("SIMPLE");
     solution.lookup("nNonOrthCorr") >> nNonOrthCorr_;
-    time().controlDict().lookup("maxDi") >> maxDiff_;
+    time()fsdfds.controlDict().lookup("maxDi") >> maxDiff_;
 
     coeffs().lookup("radFluxName") >> primaryRadFluxName_;
     coeffs().lookup("minimumDelta") >> minimumDelta_;

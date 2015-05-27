@@ -18,6 +18,7 @@
 
 \usepackage{setspace}
 \bibliographystyle{unsrt}
+
 \usepackage{amssymb}
 
 %\bibliography{Literature_20_5_15}
@@ -42,9 +43,9 @@ Email: \underline{andreas.aigner@dcs-computing.com}, \underline{christoph.kloss@
 Web page: http://www.dcs-computing.com\\}
 
 
-\keywords{Granular Materials, DEM, LIGGGHTS, ParScale, Resolved Intra Particle Profiles, Heat and Mass Transfer, Sheared Bed}
+\keywords{Granular Materials, DEM, \AtBeginDocument{\texttt{LIGGGHTS}\textregistered}, ParScale, Resolved Intra Particle Profiles, Heat and Mass Transfer, Sheared Bed}
 
-\abstract{\textit{In this paper we provide an overview about the newly developed open-source library \texttt{ParScale}. We present the basic underlying equations the coupling capability to the existing DEM solver \texttt{LIGGGHTS}\textregistered. Based on the coupling we perform simulations of sheared granular material over a wide range of Biot numbers and particle volume fractions. In addition certain verification cases will proof the functionality of \texttt{ParScale} as a stand-alone tool.}}
+\abstract{\textit{In this paper we provide an overview about the newly developed open-source library \texttt{ParScale}. We present the basic underlying equations the coupling capability to the existing DEM solver \AtBeginDocument{\texttt{LIGGGHTS}\textregistered}. Based on the coupling we perform simulations of sheared granular material over a wide range of Biot numbers and particle volume fractions. In addition certain verification cases will proof the functionality of \texttt{ParScale} as a stand-alone tool.}}
 
 \AtBeginDocument{\vspace{5 cm}}
 
@@ -55,7 +56,7 @@ Web page: http://www.dcs-computing.com\\}
 
 \section{Introduction}
 \label{sec:introduction}
-Over the last ten years the coupling of Discrete Element Method (DEM) and Computational Fluid Dynamics (CFD) became state of the art \cite{Kloss2012}. These tools are able to resolve phenomena on a particle level with high computational efficiency and also provide a detailed understanding of the general flow behavior \cite{Wu2014}. However, these tools do not take intra particle properties profiles into account. In e.g. reative systems or complex reaction-diffusion problems, these spatially resolved properties are of key importance \cite{Dixon2007}. With \texttt{ParScale}, a novel developed library in a C/C++ environment and publicly available through \textit{www.github.com} \cite{ParScale_Public}, it is possible to close this gap. In the current development state, \texttt{ParScale} holds various models regarding heat transfer, mass transfer and grain-scales. Also, it is possible to resolve single and multi-reaction networks. Due to a modular class based structure and integration into an automated test harness, easy extendibility and software quality is ensured. Section \ref{sec:simu_method} outlines the basic underlying equations for intra particle phenomena which are used for the presented verification cases and the simple shear flow. In section \ref{sec:verification_case} the verification cases are presented in order to demonstrate and verification the functionality of \texttt{ParScale}. Section \ref{sec:simple_shear} demonstrates the coupling to \texttt{LIGGGHTS}\textregistered and evaluates the need of intra particle temperature profiles for a wide range of Biot numbers and particle volume fractions in a sheared bed application. 
+Over the last ten years the coupling of Discrete Element Method (DEM) and Computational Fluid Dynamics (CFD) became state of the art \cite{Kloss2012}. These tools are able to resolve phenomena on a particle level with high computational efficiency and also provide a detailed understanding of the general flow behavior \cite{Wu2014}. However, these tools do not take intra particle properties profiles into account. In e.g. reative systems or complex reaction-diffusion problems, these spatially resolved properties are of key importance \cite{Dixon2007}. With \texttt{ParScale}, a novel developed library in a C/C++ environment and publicly available through \textit{www.github.com} \cite{ParScale_Public}, it is possible to close this gap. In the current development state, \texttt{ParScale} holds various models regarding heat transfer, mass transfer and grain-scales. Also, it is possible to resolve single and multi-reaction networks. Due to a modular class based structure and integration into an automated test harness, easy extendibility and software quality is ensured. Section \ref{sec:simu_method} outlines the basic underlying equations for intra particle phenomena which are used for the presented verification cases and the simple shear flow. In section \ref{sec:verification_case} the verification cases are presented in order to demonstrate and verification the functionality of \texttt{ParScale}. Section \ref{sec:simple_shear} demonstrates the coupling to \texttt{LIGGGHTS} $\textsuperscript{\textregistered}$ and evaluates the need of intra particle temperature profiles for a wide range of Biot numbers and particle volume fractions in a sheared bed application. 
 
 \section{Simulation method and parallel coupling strategy}
 \label{sec:simu_method}
@@ -103,19 +104,19 @@ where $NR$ is the number of reaction, $\nu_{ij}$ is the stoichiometric coefficie
 \end{align}
 
 
-For discretizing in physical space a second order central differencing scheme is used. For further information about the underlying equation, available models and discretizion schemes please refer to the online documentation in the public repository of \texttt{ParScale} \cite{ParScale_Public}. The next section briefly outlines the run modes of \texttt{ParScale} including the coupling to the open-source DEM solver \texttt{LIGGGHTS}\textregistered.
+For discretizing in physical space a second order central differencing scheme is used. For further information about the underlying equation, available models and discretizion schemes please refer to the online documentation in the public repository of \texttt{ParScale} \cite{ParScale_Public}. The next section briefly outlines the run modes of \texttt{ParScale} including the coupling to the open-source DEM solver \texttt{LIGGGHTS}\textsuperscript{\textregistered}.
 
 \subsection{Parallel coupling strategy}
-Besides a stand-alone mode the current developing state of \texttt{ParScale} provides coupling capabilities to \texttt{LIGGGHTS}\textregistered  and selected solvers of \texttt{CFDEMcoupling}. In this paper we will only focus on the coupling to \texttt{LIGGGHTS}\textregistered. Figure \ref{fig:Coupling_parScale_LIGGGHTS} shows the underlying coupling algorithm.
+Besides a stand-alone mode the current developing state of \texttt{ParScale} provides coupling capabilities to \texttt{LIGGGHTS}\textsuperscript{\textregistered}  and selected solvers of \texttt{CFDEMcoupling}. In this paper we will only focus on the coupling to \texttt{LIGGGHTS}\textsuperscript{\textregistered}. Figure \ref{fig:Coupling_parScale_LIGGGHTS} shows the underlying coupling algorithm.
 
 \begin{figure}[h!]
    \centering
    \includegraphics[scale=0.23,keepaspectratio=true]{Picture/liggghts_parscale_kopplung.eps}
-   \caption{Coupling between \texttt{LIGGGHTS}\textregistered and \texttt{ParScale} for one timestep including required coupling parameters and additional coupling options}
+   \caption{Coupling between \texttt{LIGGGHTS}\textsuperscript{\textregistered} and \texttt{ParScale} for one timestep including required coupling parameters and additional coupling options}
    \label{fig:Coupling_parScale_LIGGGHTS}
 \end{figure}
 
-For every timestep $t_n$ \texttt{LIGGGHTS}\textregistered resolves the particle movement in the simulation domain in advance. After the computation is finished the coupling is realized through the updated surface temperature ($T_{surface}$), a heat transfer coefficient $\alpha$ and eventually a conductive heat flux due to collision of particle with different shell temperatures ($\dot{q}_{cond}$). \texttt{ParScale} initializes from the last proceeded time step $t_{n-1}$ and calculates all internal property fields according to the changes. Additional coupling options are available. \texttt{LIGGGHTS}\textregistered is able to push a particle unique environment temperature (Fluid temperature) to \texttt{ParScale}. That enables \texttt{ParScale} to react due to changes in the environment temperature e.g. if the particle enters a region if a fixed temperature. Furthermore, the coupling provides the option to reset the value of the target property to a certain value. Due to the automatic sub-time stepping of \texttt{CVODE}, the internal \texttt{ParScale} timestep does not necessarily has to correspond to the DEM timestep from \texttt{LIGGGHTS}\textregistered. If \texttt{ParScale} completed the simulation the surface temperatures of all particles are updated and taken into account by \texttt{LIGGGHTS}\textregistered in timestep $t_{n+1}$. Furthermore, source terms due to reactions, core and volume averaged temperatures and fluxes are stored.\\
+For every timestep $t_n$ \texttt{LIGGGHTS}\textsuperscript{\textregistered} resolves the particle movement in the simulation domain in advance. After the computation is finished the coupling is realized through the updated surface temperature ($T_{surface}$), a heat transfer coefficient $\alpha$ and eventually a conductive heat flux due to collision of particle with different shell temperatures ($\dot{q}_{cond}$). \texttt{ParScale} initializes from the last proceeded time step $t_{n-1}$ and calculates all internal property fields according to the changes. Additional coupling options are available. \texttt{LIGGGHTS}\textsuperscript{\textregistered} is able to push a particle unique environment temperature (Fluid temperature) to \texttt{ParScale}. That enables \texttt{ParScale} to react due to changes in the environment temperature e.g. if the particle enters a region if a fixed temperature. Furthermore, the coupling provides the option to reset the value of the target property to a certain value. Due to the automatic sub-time stepping of \texttt{CVODE}, the internal \texttt{ParScale} timestep does not necessarily has to correspond to the DEM timestep from \texttt{LIGGGHTS}\textsuperscript{\textregistered}. If \texttt{ParScale} completed the simulation the surface temperatures of all particles are updated and taken into account by \texttt{LIGGGHTS}\textsuperscript{\textregistered} in timestep $t_{n+1}$. Furthermore, source terms due to reactions, core and volume averaged temperatures and fluxes are stored.\\
 In section \ref{sec:verification_case} two verification cases, a transient cooling of a sphere and a heterogeneous reaction will be shown.
 
 \section{Verification cases}
@@ -169,7 +170,7 @@ This verification case validates the implementation of a single reaction accordi
 \label{fig:reaction_stages}
 \end{figure}
 
-Figure \ref{fig:reaction_stages} (a) shows a good agreement for the first stage reaction. Arising differences are due to the pseudo-steady state modelling approach for the gaseous species in \cite{Noorman2011}. The same explenatin accounts the second stage of the copper oxidation presented in Figure \ref{fig:reaction_stages} (b). Since the differences are slightly higher than for the first stage reaction, Figure \ref{fig:Conversion} shows the overall Conversion. The comparism of analytical and numerical solution shows good agreement and the mean error is below 10 $\%$.  
+Figure \ref{fig:reaction_stages} (a) shows a very good agreement for the first stage reaction. Arising differences in the second stage (Figure \ref{fig:reaction_stages} (b)) are due to the pseudo-steady state modelling approach for the gaseous species in \cite{Noorman2011}. Since the differences are slightly higher than for the first stage reaction, Figure \ref{fig:Conversion} shows the overall Conversion. The comparism of analytical and numerical solution shows good agreement and the mean error is below 3 $\%$. 
 
 \begin{figure}[h!]
    \centering
@@ -198,7 +199,7 @@ where $\dot{\gamma}$ is the dimensional shear rate. The conductional reference f
 \begin{align}
 q_{cond,ref} = - \lambda_p \, \dfrac{\partial T}{\partial y_{middle}}.
 \end{align}
-where $q_{cond,ref}$ is the reference conductional heat flux and $y_{middle}$ is the size of the middle region. Table \ref{tab:properties_sheard_bed} shows the main non-dimensional parameters of the sheared bed simulation. For the disrect element method the open-source DEM solver \texttt{LIGGGHTS}\textregistered is used. All other parameters, e.g. poisson ratio, coefficient of restitution and time step are in agreement with earlier simulations and can be found \cite{Mohan2014}.
+where $q_{cond,ref}$ is the reference conductional heat flux and $y_{middle}$ is the size of the middle region. Table \ref{tab:properties_sheard_bed} shows the main non-dimensional parameters of the sheared bed simulation. For the disrect element method the open-source DEM solver \texttt{LIGGGHTS}\textsuperscript{\textregistered} is used. All other parameters, e.g. poisson ratio, coefficient of restitution and time step are in agreement with earlier simulations and can be found \cite{Mohan2014}.
 
 \begin{table}[h]
   \centering 
@@ -209,7 +210,7 @@ where $q_{cond,ref}$ is the reference conductional heat flux and $y_{middle}$ is
         $T_{min}$				& 0 & \\
         $d_p$					& 1 & \\
         $\phi_p$				& 0.3...0.64 &\\
-        $Bi_t$					& 0.000001...10 & \\
+        $Bi_t$					& $10^{-6}$...10 & \\
         $Pe$ 					& $0.25$& \\
       \hline      
        \end{tabular}
@@ -231,14 +232,15 @@ As it can be seen in Figure \ref{fig:sheared_bed} the influence of the Biot numb
 \section{Conclusions}
 \label{sec:conclusions}
 
-We presented a novel open-source simulation tool \texttt{ParScale} which is published under LGPL licence and can be linked to any particle-based solver. We outlined the coupling to the open-source DEM solver \texttt{LIGGGHTS}\textregistered and demonstrated the usage of \texttt{ParScale} with selected verification cases. A good agreement is found between numerical results produced by \texttt{ParScale} and analytical solutions available in literature. We extended a well-known sheared particle bed by taking intra particle temperature profiles into account. A result is that even in low Biot numbers regimes intra particle property profiles are of key importance and convective flux to the environment has to be considered. The current study was limited to selected particle volume fractions and Peclet numbers. Further work will feature wider ranges of these parameters. 
+We presented a novel open-source simulation tool \texttt{ParScale} which is published under LGPL licence and can be linked to any particle-based solver. We outlined the coupling to the open-source DEM solver \texttt{LIGGGHTS}\textsuperscript{\textregistered} and demonstrated the usage of \texttt{ParScale} with selected verification cases. A good agreement is found between numerical results produced by \texttt{ParScale} and analytical solutions available in literature. We extended a well-known sheared particle bed by taking intra particle temperature profiles into account. A result is that even in low Biot numbers regimes intra particle property profiles are of key importance and convective flux to the environment has to be considered. The current study was limited to selected particle volume fractions and Peclet numbers. Further work will feature wider ranges of these parameters. 
 
 \section{Aknowledgement}
-The authors acknowledge support by the European Commission through FP7 Grant agreement no. 604656 (“NanoSim”). \texttt{LIGGGHTS}\textregistered is a registered trademark of DCS Computing GmbH.
+The authors acknowledge support by the European Commission through FP7 Grant agreement no. 604656 (“NanoSim”). \texttt{LIGGGHTS}\textsuperscript{\textregistered} is a registered trademark of DCS Computing GmbH.
 
 \newpage
 \bibliography{Literature20515}
 %\end{thebibliography}
 
 \end{document}
+
 

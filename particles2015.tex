@@ -15,7 +15,7 @@
 \usepackage{psfrag}
 \usepackage{subfig}
 \usepackage{textcomp}
-
+\usepackage{psfrag}
 \usepackage{setspace}
 \bibliographystyle{unsrt}
 
@@ -149,7 +149,7 @@ The first verification case considers a classical situation in which a spherical
    \label{fig:Cooling_sphere}
 \end{figure}
 
-As expected, excellent agreement (i.e., an average error of XXX, and a maximum error of XXX) between analytical and numerical solution can be found.
+As expected, excellent agreement (i.e., an average error of $10^{-6}$, and a maximum error of $10^{-5}$) between analytical and numerical solution can be found.
 
 
 \subsection{Heterogeneuous reation}
@@ -159,6 +159,8 @@ This verification case considers a single reaction, and follows the analytical s
 
 \begin{figure}[h!]
 \centering
+		\psfrag{A}[c][c]{$r/R$}
+   	\psfrag{B}[c][c]{$C_i / C_{i,0} , i=A,S$}
 \subfloat[]{\label{main:a}\includegraphics[scale=.38]{Picture/concProfile_Stage1.eps}}
 \hspace{0.3cm}
 \subfloat[]{\label{main:b}\includegraphics[scale=.38]{Picture/concProfile_Stage2.eps}}\\
@@ -170,6 +172,8 @@ Figure \ref{fig:reaction_stages} (a) shows an excellent agreement for the early 
 
 \begin{figure}[h!]
    \centering
+   	\psfrag{A}[l][c]{$t / t_{react}$}
+   	\psfrag{B}[r][c]{$X_s$}
    \includegraphics[scale=0.5,keepaspectratio=true]{Picture/conversion.eps}
    \caption{Conversion characteristics during a typical oxidation cycle of a porous copper particle (line: analytical solution, dots: prediction by \texttt{ParScale}).}
    \label{fig:Conversion}
@@ -188,14 +192,14 @@ Bi_t = \dfrac{\alpha\, d_p}{\lambda_p}
 \end{align}
 where $\alpha$ is the heat transfer coefficient that characterized the rate of cooling by the ambient fluid.
 \begin{align}
-Pe = \dfrac{\left(\dfrac{d_p}{2}\right)^2}{\dfrac{\lambda_p}{\rho_c \, c_p}} \, \cdot \dot{\gamma}
+Pe = \dfrac{(d_p/2)^2}{\lambda_p \, /\, \rho_c \, c_p} \, \cdot \dot{\gamma}
 \label{eqn:Pe_number}
 \end{align}  
 where $\dot{\gamma}$ is the shear rate. The conductive reference flux is expressed as \cite{Chialvo2012}
 \begin{align}
-q_{cond,ref} = - \lambda_p \, \dfrac{\partial T}{\partial y_{middle}}.
+\dot{q}_{cond,ref} = - \lambda_p \, (\partial_y \, T)_{middle}.
 \end{align}
-where $q_{cond,ref}$ is the reference conductive heat flux and $y_{middle}$ is the length of the region over which the temperature gradient is applied. Table \ref{tab:properties_sheard_bed} shows the main non-dimensional parameters of the sheared bed simulation.  All other parameters, e.g., the particle stiffness, the coefficient of restitution and time step are in agreement with our earlier simulations \cite{Mohan2014}.
+where $\dot{q}_{cond,ref}$ is the reference conductive heat flux and $y_{middle}$ is the length of the region over which the temperature gradient is applied. Table \ref{tab:properties_sheard_bed} shows the main non-dimensional parameters of the sheared bed simulation.  All other parameters, e.g., the particle stiffness, the coefficient of restitution and time step are in agreement with our earlier simulations \cite{Mohan2014}.
 
 \begin{table}[h]
   \centering 
@@ -214,6 +218,14 @@ where $q_{cond,ref}$ is the reference conductive heat flux and $y_{middle}$ is t
 
 \begin{figure}[h!]
    \centering
+   	%\psfrag{A}[l][c]{\scriptsize{$Bi_t$}}
+	\psfrag{A}[c][c]{$Bi_t$}
+   	\psfrag{B}[c][c]{$\dot{q}/\dot{q}_{cond}$}
+   	\psfrag{C}[l][c]{\scriptsize{$\phi_p = 0.35$}}
+   	\psfrag{D}[l][c]{\scriptsize{$\phi_p = 0.45$}}
+   	\psfrag{E}[l][c]{\scriptsize{$\phi_p = 0.54$}}
+   	\psfrag{F}[l][c]{\scriptsize{$\phi_p = 0.60$}}
+   	\psfrag{G}[l][c]{\scriptsize{$\phi_p = 0.64$}}
    \includegraphics[scale=0.6,keepaspectratio=true]{Picture/sheared_bed.eps}
    \caption{Effect of the Biot number on the conductive heat flux in the gradient direction for various particle volume fractions.}
    \label{fig:sheared_bed}

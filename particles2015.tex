@@ -118,13 +118,13 @@ Next, two verification cases, i.e., transient cooling of a sphere and a heteroge
 \section{Verification cases}
 \label{sec:verification_case}
 
-\subsection{Transient cooled sphere}
+\subsection{Cooled sphere}
 \label{sec:transient_cooling}
-The first verification case considers a classical situation in which a spherical particle is cooled down from an initially uniform temperature $T_0$ to that of the ambient fluid $T_{enviro}$. Table \ref{tab:properties_cooling_sphere} summarizes the properties of this case. Figure \ref{fig:Cooling_sphere} illustrates the comparison between the numerical solution by \texttt{ParScale} and the analytical solution provided by \cite{Crank1975} for a number of time coordinates. 
+The first verification case considers a classical situation in which a spherical particle (initially having the uniform temperature $T_0$) is convectively cooled by an ambient fluid with temperature $T_{enviro}$. Table \ref{tab:properties_cooling_sphere} summarizes the parameters of this case. Figure \ref{fig:Cooling_sphere} illustrates the comparison between the numerical solution by \texttt{ParScale} and the analytical solution provided by \cite{Crank1975} for a number of time coordinates. 
 
 \begin{table}[h]
   \centering 
-  \caption{Properties of the transient cooling of a sphere.}
+  \caption{Parameters for the verification case 'cooling of a sphere'.}
    \begin{tabular}{llr}
       \hline 
         $c_p$                   &300       & [J$\,\text{m}^{-3}\,$K]\\   
@@ -145,11 +145,11 @@ The first verification case considers a classical situation in which a spherical
 \begin{figure}[h!]
    \centering
    \includegraphics[scale=0.5,keepaspectratio=true]{Picture/transient_cooling_sphere.eps}
-   \caption{Numerical and analytical solution for a  cooled sphere at $t_1$ = 2 sec, $t_2$ = 5 sec, $t_3$ = 8 sec, and $t_4$ = 10 sec.}
+   \caption{Numerical (symbols) and analytical results (lines) for the temperature distribution in a convectively cooled sphere at $t_1$ = 2 s, $t_2$ = 5 s, $t_3$ = 8 s, and $t_4$ = 10 s.}
    \label{fig:Cooling_sphere}
 \end{figure}
 
-A very good agreement (i.e., an average error of XXX, and a maximum error of XXX) between analytical and numerical solution can be found for typical settings of the integrator.
+As expected, excellent agreement (i.e., an average error of XXX, and a maximum error of XXX) between analytical and numerical solution can be found.
 
 
 \subsection{Heterogeneuous reation}
@@ -162,7 +162,7 @@ This verification case considers a single reaction, and follows the analytical s
 \subfloat[]{\label{main:a}\includegraphics[scale=.38]{Picture/concProfile_Stage1.eps}}
 \hspace{0.3cm}
 \subfloat[]{\label{main:b}\includegraphics[scale=.38]{Picture/concProfile_Stage2.eps}}\\
-\caption{Comparison of solid and fluid concentrations for the early stage (a) and the late stage (b) of a heterogeneous reaction inside a porous particle.}
+\caption{Solid and gas-phase concentration profiles inside a porous copper particle for the early stage (a) and the late stage (b) of a heterogeneous reaction (lines: analytical solution, symbols: predictions by \texttt{ParScale}).}
 \label{fig:reaction_stages}
 \end{figure}
 
@@ -171,7 +171,7 @@ Figure \ref{fig:reaction_stages} (a) shows an excellent agreement for the early 
 \begin{figure}[h!]
    \centering
    \includegraphics[scale=0.5,keepaspectratio=true]{Picture/conversion.eps}
-   \caption{Conversion characteristic during a typical oxidation cycle of a porous copper particle.}
+   \caption{Conversion characteristics during a typical oxidation cycle of a porous copper particle (line: analytical solution, dots: prediction by \texttt{ParScale}).}
    \label{fig:Conversion}
 \end{figure}
 
